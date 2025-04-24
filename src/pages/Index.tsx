@@ -1,4 +1,3 @@
-
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 import { 
@@ -62,51 +61,50 @@ const Index = () => {
 
   return (
     <div 
-      className="weather-app bg-transition"
+      className="weather-app bg-transition min-h-screen w-full"
       style={{
-        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url(${backgroundImage})`,
+        backgroundImage: `linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(${backgroundImage})`,
       }}
     >
-      <div className="min-h-screen w-full max-w-7xl mx-auto px-4 py-8 flex flex-col">
-        <div className="mb-8 flex justify-center">
-          <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+      <div className="container mx-auto px-4 py-8 flex flex-col items-center min-h-screen">
+        <div className="w-full max-w-4xl glass-dark rounded-3xl p-8 backdrop-blur-xl">
+          <div className="mb-8">
+            <SearchBar onSearch={handleSearch} isLoading={isLoading} />
+          </div>
+          
+          {isLoading && !currentWeather ? (
+            <div className="flex items-center justify-center py-12">
+              <div className="w-16 h-16 border-4 border-weather-purple border-t-transparent rounded-full animate-spin" />
+            </div>
+          ) : (
+            <>
+              {currentWeather && (
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                  <div className="lg:col-span-3">
+                    {forecast && forecast.length > 0 && (
+                      <ForecastCard forecasts={forecast} />
+                    )}
+                  </div>
+                  
+                  <div className="lg:col-span-6">
+                    <CurrentWeather data={currentWeather} />
+                  </div>
+                  
+                  <div className="lg:col-span-3">
+                    <SunTimeCard 
+                      sunrise={currentWeather.sys.sunrise} 
+                      sunset={currentWeather.sys.sunset}
+                      timezone={currentWeather.timezone}
+                      currentTime={currentWeather.dt}
+                    />
+                  </div>
+                </div>
+              )}
+            </>
+          )}
         </div>
         
-        {isLoading && !currentWeather ? (
-          <div className="flex-1 flex items-center justify-center">
-            <div className="w-16 h-16 border-4 border-weather-purple border-t-transparent rounded-full animate-spin"></div>
-          </div>
-        ) : (
-          <>
-            {currentWeather && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                {/* Left side - Forecast */}
-                <div className="lg:col-span-3 order-2 lg:order-1">
-                  {forecast && forecast.length > 0 && (
-                    <ForecastCard forecasts={forecast} />
-                  )}
-                </div>
-                
-                {/* Middle - Current Weather */}
-                <div className="lg:col-span-6 order-1 lg:order-2">
-                  <CurrentWeather data={currentWeather} />
-                </div>
-                
-                {/* Right side - Sun times */}
-                <div className="lg:col-span-3 order-3">
-                  <SunTimeCard 
-                    sunrise={currentWeather.sys.sunrise} 
-                    sunset={currentWeather.sys.sunset}
-                    timezone={currentWeather.timezone}
-                    currentTime={currentWeather.dt}
-                  />
-                </div>
-              </div>
-            )}
-          </>
-        )}
-        
-        <footer className="mt-auto pt-8 text-center text-white/50 text-sm">
+        <footer className="mt-auto pt-8 text-white/50 text-sm">
           <p>Weather data provided by OpenWeatherMap</p>
         </footer>
       </div>

@@ -1,8 +1,7 @@
 
 import { useState } from "react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Search } from "lucide-react";
+import { Input } from "@/components/ui/input";
 
 interface SearchBarProps {
   onSearch: (city: string) => void;
@@ -20,25 +19,25 @@ const SearchBar = ({ onSearch, isLoading }: SearchBarProps) => {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="flex w-full max-w-md gap-2">
+    <form onSubmit={handleSubmit} className="relative w-full max-w-xl mx-auto">
       <Input
         type="text"
         placeholder="Enter city name..."
         value={city}
         onChange={(e) => setCity(e.target.value)}
-        className="bg-white/70 focus:bg-white/90 transition-all"
+        className="w-full bg-white/10 border-white/20 text-white placeholder:text-white/70 pl-4 pr-12 py-6 rounded-full text-lg focus:bg-white/20 transition-all"
       />
-      <Button 
+      <button 
         type="submit" 
         disabled={isLoading || !city.trim()}
-        className="bg-weather-purple hover:bg-weather-darkPurple text-white"
+        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full bg-white/20 hover:bg-white/30 transition-colors disabled:opacity-50"
       >
         {isLoading ? (
           <div className="w-5 h-5 border-2 border-t-transparent rounded-full animate-spin" />
         ) : (
-          <Search className="h-5 w-5" />
+          <Search className="h-5 w-5 text-white" />
         )}
-      </Button>
+      </button>
     </form>
   );
 };
