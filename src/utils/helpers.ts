@@ -9,9 +9,14 @@ export const formatDayOfWeek = (timestamp: number): string => {
 
 /**
  * Format time from timestamp
+ * @param timestamp Unix timestamp in seconds
+ * @param timezone Timezone offset in seconds
+ * @returns Formatted time string with proper timezone adjustment
  */
 export const formatTime = (timestamp: number, timezone: number = 0): string => {
+  // Convert the timestamp to milliseconds and apply the timezone offset
   const date = new Date((timestamp + timezone) * 1000);
+  
   return date.toLocaleTimeString("en-US", { 
     hour: "2-digit", 
     minute: "2-digit",
