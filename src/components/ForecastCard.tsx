@@ -1,5 +1,5 @@
 
-import { formatDayOfWeek, kelvinToCelsius } from "@/utils/helpers";
+import { formatDayOfWeek } from "@/utils/helpers";
 import { getWeatherIconUrl } from "@/services/weatherService";
 
 interface ForecastCardProps {
@@ -43,7 +43,7 @@ const ForecastCard = ({ forecasts }: ForecastCardProps) => {
               </div>
             </div>
             <div className="text-xl font-bold text-white text-shadow">
-              {kelvinToCelsius(forecast.main.temp)}°C
+              {Math.round(forecast.main.temp)}°C
             </div>
           </div>
         ))}

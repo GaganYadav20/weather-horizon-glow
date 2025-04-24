@@ -1,5 +1,4 @@
 
-import { kelvinToCelsius } from "@/utils/helpers";
 import { CurrentWeatherData, getWeatherIconUrl } from "@/services/weatherService";
 import { Droplet, Wind } from "lucide-react";
 
@@ -27,7 +26,7 @@ const CurrentWeather = ({ data }: CurrentWeatherProps) => {
       
       <div className="space-y-2">
         <h1 className="text-7xl font-bold text-white text-shadow-lg">
-          {kelvinToCelsius(temp)}°C
+          {Math.round(temp)}°C
         </h1>
         <h2 className="text-4xl font-medium text-white/90">
           {name}

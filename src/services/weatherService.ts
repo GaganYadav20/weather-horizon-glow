@@ -53,7 +53,7 @@ export interface ForecastData {
 export const fetchCurrentWeather = async (city: string): Promise<CurrentWeatherData> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/weather?q=${city}&appid=${API_KEY}`
+      `${BASE_URL}/weather?q=${city}&units=metric&appid=${API_KEY}`
     );
     
     if (!response.ok) {
@@ -72,7 +72,7 @@ export const fetchCurrentWeather = async (city: string): Promise<CurrentWeatherD
 export const fetchForecast = async (city: string): Promise<ForecastData> => {
   try {
     const response = await fetch(
-      `${BASE_URL}/forecast?q=${city}&appid=${API_KEY}`
+      `${BASE_URL}/forecast?q=${city}&units=metric&appid=${API_KEY}`
     );
     
     if (!response.ok) {

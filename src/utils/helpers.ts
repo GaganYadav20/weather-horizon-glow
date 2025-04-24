@@ -1,12 +1,5 @@
 
 /**
- * Convert temperature from Kelvin to Celsius
- */
-export const kelvinToCelsius = (kelvin: number): number => {
-  return Math.round(kelvin - 273.15);
-};
-
-/**
  * Format date to display day of week
  */
 export const formatDayOfWeek = (timestamp: number): string => {
