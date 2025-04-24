@@ -1,5 +1,5 @@
 
-const API_KEY = "6a73ea9ac81c611fc91a48e6edc7aad9"; // OpenWeatherMap API key
+const API_KEY = "5311126d7ce8aefccfcf395ca6344101"; // Updated OpenWeatherMap API key
 const BASE_URL = "https://api.openweathermap.org/data/2.5";
 
 export interface CurrentWeatherData {
